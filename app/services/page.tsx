@@ -8,17 +8,31 @@ import { useTranslation } from '../context/LanguageContext'
 const serviceIcons = ['🚀', '🏗️', '🤖', '🥽']
 
 export default function Services() {
-  // Hole alle Übersetzungen am Anfang der Komponente
-  const cardTitles = [1, 2, 3, 4].map(index => 
-    useTranslation(`services.card${index}.title`)
-  )
-  const cardDescriptions = [1, 2, 3, 4].map(index => 
-    useTranslation(`services.card${index}.description`)
-  )
+  // Hole alle Übersetzungen direkt
+  const card1Title = useTranslation('services.card1.title')
+  const card1Desc = useTranslation('services.card1.description')
+  const card2Title = useTranslation('services.card2.title')
+  const card2Desc = useTranslation('services.card2.description')
+  const card3Title = useTranslation('services.card3.title')
+  const card3Desc = useTranslation('services.card3.description')
+  const card4Title = useTranslation('services.card4.title')
+  const card4Desc = useTranslation('services.card4.description')
+
   const methodologyTitle = useTranslation('services.methodology.title')
-  const methodologySteps = [1, 2, 3, 4, 5].map(step => 
-    useTranslation(`services.methodology.step${step}`)
-  )
+  const step1 = useTranslation('services.methodology.step1')
+  const step2 = useTranslation('services.methodology.step2')
+  const step3 = useTranslation('services.methodology.step3')
+  const step4 = useTranslation('services.methodology.step4')
+  const step5 = useTranslation('services.methodology.step5')
+
+  const cardContents = [
+    { title: card1Title, description: card1Desc },
+    { title: card2Title, description: card2Desc },
+    { title: card3Title, description: card3Desc },
+    { title: card4Title, description: card4Desc }
+  ]
+
+  const methodologySteps = [step1, step2, step3, step4, step5]
 
   return (
     <main className="min-h-screen">
@@ -32,20 +46,20 @@ export default function Services() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[1, 2, 3, 4].map((index) => (
+            {cardContents.map((card, index) => (
               <motion.div
-                key={`service-${index}`}
+                key={`service-${index + 1}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: (index - 1) * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="text-4xl mb-4">{serviceIcons[index - 1]}</div>
+                <div className="text-4xl mb-4">{serviceIcons[index]}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {cardTitles[index - 1]}
+                  {card.title}
                 </h3>
                 <p className="text-gray-700">
-                  {cardDescriptions[index - 1]}
+                  {card.description}
                 </p>
               </motion.div>
             ))}
