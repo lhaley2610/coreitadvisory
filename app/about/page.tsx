@@ -6,19 +6,23 @@ import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
 import { useTranslation } from '../context/LanguageContext'
 
-const features = [1, 2, 3, 4]
-
 export default function About() {
-  // Hole alle Übersetzungen direkt
   const ceoRole = useTranslation('about.ceo.role')
   const ceoDescription = useTranslation('about.ceo.description')
 
-  const featureTitles = features.map(index => 
-    useTranslation(`about.features.title${index}`)
-  )
-  const featureDescriptions = features.map(index => 
-    useTranslation(`about.features.desc${index}`)
-  )
+  // Hole alle Feature-Übersetzungen direkt
+  const featureTitle1 = useTranslation('about.features.title1')
+  const featureTitle2 = useTranslation('about.features.title2')
+  const featureTitle3 = useTranslation('about.features.title3')
+  const featureTitle4 = useTranslation('about.features.title4')
+
+  const featureDesc1 = useTranslation('about.features.desc1')
+  const featureDesc2 = useTranslation('about.features.desc2')
+  const featureDesc3 = useTranslation('about.features.desc3')
+  const featureDesc4 = useTranslation('about.features.desc4')
+
+  const featureTitles = [featureTitle1, featureTitle2, featureTitle3, featureTitle4]
+  const featureDescriptions = [featureDesc1, featureDesc2, featureDesc3, featureDesc4]
 
   return (
     <main className="min-h-screen">
@@ -75,19 +79,19 @@ export default function About() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {features.map((index) => (
+            {[0, 1, 2, 3].map((index) => (
               <motion.div
-                key={`feature-${index}`}
+                key={`feature-${index + 1}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: (index - 1) * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {featureTitles[index - 1]}
+                  {featureTitles[index]}
                 </h3>
                 <p className="text-gray-700">
-                  {featureDescriptions[index - 1]}
+                  {featureDescriptions[index]}
                 </p>
               </motion.div>
             ))}

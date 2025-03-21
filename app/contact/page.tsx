@@ -1,19 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
 import { useTranslation } from '../context/LanguageContext'
 
 export default function Contact() {
   const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     // Hier können Sie die E-Mail-Adresse verarbeiten, z.B. an einen Server senden
-    setSubmitted(true)
     setEmail('')
   }
 
