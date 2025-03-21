@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
 import { useTranslation } from '../context/LanguageContext'
 
 export default function Navigation() {

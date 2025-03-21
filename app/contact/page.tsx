@@ -9,6 +9,14 @@ import { useTranslation } from '../context/LanguageContext'
 export default function Contact() {
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  
+  // Hole alle Übersetzungen am Anfang
+  const newsletterText = useTranslation('contact.newsletter')
+  const emailLabel = useTranslation('contact.email')
+  const submitButton = useTranslation('contact.submit')
+  const thanksText = useTranslation('contact.thanks')
+  const successText = useTranslation('contact.success')
+  const directContactText = useTranslation('contact.direct')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -38,12 +46,12 @@ export default function Contact() {
               {!submitted ? (
                 <>
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    {useTranslation('contact.newsletter')}
+                    {newsletterText}
                   </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        {useTranslation('contact.email')}
+                        {emailLabel}
                       </label>
                       <input
                         type="email"
@@ -62,7 +70,7 @@ export default function Contact() {
                       type="submit"
                       className="w-full bg-gradient-to-r from-[#4287f5] to-[#9d7cf5] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition duration-200"
                     >
-                      {useTranslation('contact.submit')}
+                      {submitButton}
                     </motion.button>
                   </form>
                 </>
@@ -74,10 +82,10 @@ export default function Contact() {
                 >
                   <div className="text-5xl mb-4">✓</div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    {useTranslation('contact.thanks')}
+                    {thanksText}
                   </h3>
                   <p className="text-gray-600">
-                    {useTranslation('contact.success')}
+                    {successText}
                   </p>
                 </motion.div>
               )}
@@ -90,7 +98,7 @@ export default function Contact() {
               className="mt-12 text-center"
             >
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                {useTranslation('contact.direct')}
+                {directContactText}
               </h3>
               <p className="text-gray-600 mb-2">
                 CoreIT Advisory GmbH
