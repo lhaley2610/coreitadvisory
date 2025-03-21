@@ -32,8 +32,8 @@ export default function About() {
       <div className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PageHeader 
-            title="Über CoreIT Advisory"
-            description="Mit über drei Jahrzehnten Erfahrung sind wir Ihr verlässlicher Partner für die digitale Transformation und strategische IT-Beratung."
+            titleKey="about.title"
+            descriptionKey="about.description"
           />
 
           {/* CEO Section */}

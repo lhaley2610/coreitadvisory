@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
+import { useTranslation } from '../context/LanguageContext'
 
 export default function Contact() {
   const [email, setEmail] = useState('')
@@ -23,8 +24,8 @@ export default function Contact() {
       <div className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PageHeader 
-            title="Kontakt"
-            description="Bleiben Sie informiert über unsere Dienstleistungen und Entwicklungen in der IT-Beratung."
+            titleKey="contact.title"
+            descriptionKey="contact.description"
           />
 
           <div className="max-w-2xl mx-auto">
@@ -36,11 +37,13 @@ export default function Contact() {
             >
               {!submitted ? (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Newsletter Anmeldung</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                    {useTranslation('contact.newsletter')}
+                  </h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        E-Mail-Adresse
+                        {useTranslation('contact.email')}
                       </label>
                       <input
                         type="email"
@@ -59,7 +62,7 @@ export default function Contact() {
                       type="submit"
                       className="w-full bg-gradient-to-r from-[#4287f5] to-[#9d7cf5] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition duration-200"
                     >
-                      Anmelden
+                      {useTranslation('contact.submit')}
                     </motion.button>
                   </form>
                 </>
@@ -70,9 +73,11 @@ export default function Contact() {
                   className="text-center py-8"
                 >
                   <div className="text-5xl mb-4">✓</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Vielen Dank!</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {useTranslation('contact.thanks')}
+                  </h3>
                   <p className="text-gray-600">
-                    Ihre E-Mail-Adresse wurde erfolgreich registriert.
+                    {useTranslation('contact.success')}
                   </p>
                 </motion.div>
               )}
@@ -84,7 +89,9 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mt-12 text-center"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Direkter Kontakt</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                {useTranslation('contact.direct')}
+              </h3>
               <p className="text-gray-600 mb-2">
                 CoreIT Advisory GmbH
               </p>
