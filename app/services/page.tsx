@@ -3,57 +3,27 @@
 import { motion } from 'framer-motion'
 import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
-import { 
-  CpuChipIcon, 
-  ArrowPathIcon, 
-  LightBulbIcon,
-  CodeBracketIcon 
-} from '@heroicons/react/24/outline'
 
 const services = [
   {
-    title: 'IT-Strategie & Architektur',
-    description: 'Entwicklung zukunftssicherer IT-Strategien und Enterprise-Architekturen für Ihr Unternehmen.',
-    icon: CpuChipIcon,
-    features: [
-      'IT-Strategieentwicklung',
-      'Enterprise Architecture Management',
-      'Cloud-Transformation',
-      'IT-Governance'
-    ]
+    title: 'IT-Strategie & Digitale Transformation',
+    description: 'Entwicklung zukunftssicherer IT-Strategien und Begleitung der digitalen Transformation.',
+    icon: '🚀'
   },
   {
-    title: 'Digitale Transformation',
-    description: 'Begleitung Ihrer digitalen Transformation von der Strategie bis zur Umsetzung.',
-    icon: ArrowPathIcon,
-    features: [
-      'Prozessdigitalisierung',
-      'Change Management',
-      'Digitale Workflows',
-      'Automatisierung'
-    ]
+    title: 'Enterprise Architecture',
+    description: 'Gestaltung und Optimierung von IT-Architekturen für maximale Effizienz und Skalierbarkeit.',
+    icon: '🏗️'
   },
   {
-    title: 'Innovative Technologien',
-    description: 'Integration modernster Technologien für Ihren Wettbewerbsvorteil.',
-    icon: LightBulbIcon,
-    features: [
-      'Künstliche Intelligenz',
-      'Machine Learning',
-      'Augmented Reality',
-      'Virtual Reality'
-    ]
+    title: 'KI & Machine Learning',
+    description: 'Integration von KI-Lösungen zur Prozessoptimierung und Entscheidungsunterstützung.',
+    icon: '🤖'
   },
   {
-    title: 'Software & Technologie',
-    description: 'Professionelle Beratung bei der Auswahl und Implementierung von Software-Lösungen.',
-    icon: CodeBracketIcon,
-    features: [
-      'Software-Evaluation',
-      'Implementierungsberatung',
-      'System-Integration',
-      'Performance-Optimierung'
-    ]
+    title: 'AR/VR Lösungen',
+    description: 'Entwicklung innovativer AR/VR-Anwendungen für Training, Wartung und Kundenservice.',
+    icon: '🥽'
   }
 ]
 
@@ -65,8 +35,8 @@ export default function Services() {
       <div className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PageHeader 
-            title="Unsere Leistungen"
-            description="Wir bieten ein umfassendes Portfolio an IT-Beratungsleistungen, maßgeschneidert auf die Bedürfnisse Ihres Unternehmens."
+            titleKey="services.title"
+            descriptionKey="services.description"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -76,23 +46,11 @@ export default function Services() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow p-6"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="flex items-center mb-4">
-                  <service.icon className="h-8 w-8 text-[#0055FF] mr-3" />
-                  <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
-                </div>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center text-gray-700">
-                      <svg className="h-5 w-5 text-[#6B46C1] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-gray-700">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -101,11 +59,16 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-16 text-center"
+            className="mt-16 bg-gradient-to-br from-[#4287f5] to-[#9d7cf5] text-white rounded-lg p-8 shadow-xl"
           >
-            <a href="/contact" className="btn-primary">
-              Beratungsgespräch vereinbaren
-            </a>
+            <h2 className="text-2xl font-bold mb-4">Unsere Methodik</h2>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Analyse der aktuellen IT-Landschaft</li>
+              <li>Entwicklung maßgeschneiderter Lösungen</li>
+              <li>Agile Implementierung</li>
+              <li>Kontinuierliche Optimierung</li>
+              <li>Wissenstransfer und Schulung</li>
+            </ul>
           </motion.div>
         </div>
       </div>

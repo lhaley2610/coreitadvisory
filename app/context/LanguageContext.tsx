@@ -71,6 +71,14 @@ const translations = {
   'contact.direct': {
     de: 'Direkter Kontakt',
     en: 'Direct Contact'
+  },
+  'services.title': {
+    de: 'Unsere Leistungen',
+    en: 'Our Services'
+  },
+  'services.description': {
+    de: 'Wir bieten ein umfassendes Portfolio an IT-Beratungsleistungen, maßgeschneidert auf die Bedürfnisse Ihres Unternehmens.',
+    en: 'We offer a comprehensive portfolio of IT consulting services, tailored to your company\'s needs.'
   }
 }
 
