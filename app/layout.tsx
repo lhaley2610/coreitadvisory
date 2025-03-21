@@ -1,10 +1,7 @@
-'use client'
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from './context/LanguageContext'
-import LanguageSwitcher from './components/LanguageSwitcher'
+import ClientLayout from './components/ClientLayout'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +18,9 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          <LanguageSwitcher />
+        <ClientLayout>
           {children}
-        </LanguageProvider>
+        </ClientLayout>
       </body>
     </html>
   );
