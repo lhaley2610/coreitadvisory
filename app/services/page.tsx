@@ -8,6 +8,18 @@ import { useTranslation } from '../context/LanguageContext'
 const serviceIcons = ['🚀', '🏗️', '🤖', '🥽']
 
 export default function Services() {
+  // Hole alle Übersetzungen am Anfang der Komponente
+  const cardTitles = [1, 2, 3, 4].map(index => 
+    useTranslation(`services.card${index}.title`)
+  )
+  const cardDescriptions = [1, 2, 3, 4].map(index => 
+    useTranslation(`services.card${index}.description`)
+  )
+  const methodologyTitle = useTranslation('services.methodology.title')
+  const methodologySteps = [1, 2, 3, 4, 5].map(step => 
+    useTranslation(`services.methodology.step${step}`)
+  )
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -30,10 +42,10 @@ export default function Services() {
               >
                 <div className="text-4xl mb-4">{serviceIcons[index - 1]}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {useTranslation(`services.card${index}.title`)}
+                  {cardTitles[index - 1]}
                 </h3>
                 <p className="text-gray-700">
-                  {useTranslation(`services.card${index}.description`)}
+                  {cardDescriptions[index - 1]}
                 </p>
               </motion.div>
             ))}
@@ -46,12 +58,12 @@ export default function Services() {
             className="mt-16 bg-gradient-to-br from-[#4287f5] to-[#9d7cf5] text-white rounded-lg p-8 shadow-xl"
           >
             <h2 className="text-2xl font-bold mb-4">
-              {useTranslation('services.methodology.title')}
+              {methodologyTitle}
             </h2>
             <ul className="list-disc list-inside space-y-2">
-              {[1, 2, 3, 4, 5].map((step) => (
-                <li key={`step-${step}`}>
-                  {useTranslation(`services.methodology.step${step}`)}
+              {methodologySteps.map((step, index) => (
+                <li key={`step-${index + 1}`}>
+                  {step}
                 </li>
               ))}
             </ul>
