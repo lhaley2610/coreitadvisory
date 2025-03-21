@@ -1,84 +1,74 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-
-const navItems = [
-  { name: 'Start', href: '/' },
-  { name: 'Über uns', href: '/about' },
-  { name: 'Leistungen', href: '/services' },
-  { name: 'Kontakt', href: '/contact' },
-]
+import { useTranslation } from '../context/LanguageContext'
 
 export default function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (path: string) => pathname === path
 
   return (
-    <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50">
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-white bg-opacity-90 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-[#0055FF] via-[#6B46C1] to-[#1A1A1A] bg-clip-text text-transparent">
-              CoreIT
+        <div className="flex justify-between h-16">
+          <div className="flex">
+            <Link href="/" className="flex items-center">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#4287f5] to-[#9d7cf5] bg-clip-text text-transparent">
+                CoreIT Advisory
+              </span>
             </Link>
           </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-[#0055FF] transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#0055FF] focus:outline-none"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          <div className="flex space-x-8">
+            <Link
+              href="/"
+              className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                isActive('/') 
+                  ? 'text-[#4287f5]'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
-              {mobileMenuOpen ? (
-                <XMarkIcon className="block h-6 w-6" />
-              ) : (
-                <Bars3Icon className="block h-6 w-6" />
-              )}
-            </button>
+              {useTranslation('nav.home')}
+            </Link>
+
+            <Link
+              href="/about"
+              className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                isActive('/about')
+                  ? 'text-[#4287f5]'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {useTranslation('nav.about')}
+            </Link>
+
+            <Link
+              href="/services"
+              className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                isActive('/services')
+                  ? 'text-[#4287f5]'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {useTranslation('nav.services')}
+            </Link>
+
+            <Link
+              href="/contact"
+              className={`inline-flex items-center px-1 pt-1 text-sm font-medium ${
+                isActive('/contact')
+                  ? 'text-[#4287f5]'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {useTranslation('nav.contact')}
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      <motion.div
-        className="md:hidden"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: mobileMenuOpen ? 1 : 0, y: mobileMenuOpen ? 0 : -10 }}
-        transition={{ duration: 0.2 }}
-      >
-        {mobileMenuOpen && (
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/80 backdrop-blur-md">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-[#0055FF] transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-        )}
-      </motion.div>
     </nav>
   )
 } 
