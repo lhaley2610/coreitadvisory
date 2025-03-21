@@ -4,27 +4,22 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
+import { useTranslation } from '../context/LanguageContext'
 
-const features = [
-  {
-    title: 'Innovative Technologien',
-    description: 'Expertise in KI, AR/VR und modernsten IT-Lösungen'
-  },
-  {
-    title: 'Branchenexpertise',
-    description: 'Spezialisierung auf Finanzdienstleistungen und Banking'
-  },
-  {
-    title: 'IT-Architektur',
-    description: 'Entwicklung zukunftssicherer IT-Infrastrukturen'
-  },
-  {
-    title: 'Compliance & Security',
-    description: 'Implementierung regulatorischer Anforderungen und Sicherheitsstandards'
-  }
-]
+const features = [1, 2, 3, 4]
 
 export default function About() {
+  // Hole alle Übersetzungen direkt
+  const ceoRole = useTranslation('about.ceo.role')
+  const ceoDescription = useTranslation('about.ceo.description')
+
+  const featureTitles = features.map(index => 
+    useTranslation(`about.features.title${index}`)
+  )
+  const featureDescriptions = features.map(index => 
+    useTranslation(`about.features.desc${index}`)
+  )
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -65,7 +60,7 @@ export default function About() {
                   className="text-3xl font-bold bg-gradient-to-r from-[#4287f5] to-[#9d7cf5] bg-clip-text text-transparent"
                 >
                   Jan Michalewicz
-                  <span className="block text-xl text-gray-700 mt-1">CEO & Senior IT-Berater</span>
+                  <span className="block text-xl text-gray-700 mt-1">{ceoRole}</span>
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -73,23 +68,27 @@ export default function About() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                   className="text-lg text-gray-700 leading-relaxed"
                 >
-                  Als erfahrener IT-Stratege berät Jan Michalewicz seit über 30 Jahren Unternehmen bei ihrer digitalen Transformation. Seine Vision ist es, Unternehmen durch innovative Technologien und maßgeschneiderte IT-Strategien zukunftsfähig zu machen.
+                  {ceoDescription}
                 </motion.p>
               </div>
             </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {features.map((feature, index) => (
+            {features.map((index) => (
               <motion.div
-                key={feature.title}
+                key={`feature-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: (index - 1) * 0.2 }}
                 className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-700">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  {featureTitles[index - 1]}
+                </h3>
+                <p className="text-gray-700">
+                  {featureDescriptions[index - 1]}
+                </p>
               </motion.div>
             ))}
           </div>

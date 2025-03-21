@@ -40,6 +40,46 @@ const translations = {
     de: 'Mit über drei Jahrzehnten Erfahrung sind wir Ihr verlässlicher Partner für die digitale Transformation und strategische IT-Beratung.',
     en: 'With over three decades of experience, we are your reliable partner for digital transformation and strategic IT consulting.'
   },
+  'about.ceo.role': {
+    de: 'CEO & Senior IT-Berater',
+    en: 'CEO & Senior IT Consultant'
+  },
+  'about.ceo.description': {
+    de: 'Als erfahrener IT-Stratege berät Jan Michalewicz seit über 30 Jahren Unternehmen bei ihrer digitalen Transformation. Seine Vision ist es, Unternehmen durch innovative Technologien und maßgeschneiderte IT-Strategien zukunftsfähig zu machen.',
+    en: 'As an experienced IT strategist, Jan Michalewicz has been advising companies on their digital transformation for over 30 years. His vision is to make companies future-proof through innovative technologies and tailored IT strategies.'
+  },
+  'about.features.title1': {
+    de: 'Innovative Technologien',
+    en: 'Innovative Technologies'
+  },
+  'about.features.desc1': {
+    de: 'Expertise in KI, AR/VR und modernsten IT-Lösungen',
+    en: 'Expertise in AI, AR/VR and cutting-edge IT solutions'
+  },
+  'about.features.title2': {
+    de: 'Branchenexpertise',
+    en: 'Industry Expertise'
+  },
+  'about.features.desc2': {
+    de: 'Spezialisierung auf Finanzdienstleistungen und Banking',
+    en: 'Specialization in financial services and banking'
+  },
+  'about.features.title3': {
+    de: 'IT-Architektur',
+    en: 'IT Architecture'
+  },
+  'about.features.desc3': {
+    de: 'Entwicklung zukunftssicherer IT-Infrastrukturen',
+    en: 'Development of future-proof IT infrastructures'
+  },
+  'about.features.title4': {
+    de: 'Compliance & Security',
+    en: 'Compliance & Security'
+  },
+  'about.features.desc4': {
+    de: 'Implementierung regulatorischer Anforderungen und Sicherheitsstandards',
+    en: 'Implementation of regulatory requirements and security standards'
+  },
   'contact.title': {
     de: 'Kontakt',
     en: 'Contact'
