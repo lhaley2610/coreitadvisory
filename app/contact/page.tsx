@@ -1,15 +1,21 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navigation from '../components/Navigation'
 import PageHeader from '../components/PageHeader'
-import { 
-  EnvelopeIcon, 
-  PhoneIcon, 
-  MapPinIcon 
-} from '@heroicons/react/24/outline'
 
 export default function Contact() {
+  const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // Hier können Sie die E-Mail-Adresse verarbeiten, z.B. an einen Server senden
+    setSubmitted(true)
+    setEmail('')
+  }
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -17,107 +23,77 @@ export default function Contact() {
       <div className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PageHeader 
-            title="Kontaktieren Sie uns"
-            description="Wir freuen uns darauf, von Ihnen zu hören. Kontaktieren Sie uns für ein unverbindliches Beratungsgespräch."
+            title="Kontakt"
+            description="Bleiben Sie informiert über unsere Dienstleistungen und Entwicklungen in der IT-Beratung."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="max-w-2xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-white rounded-lg shadow-lg p-8"
+              className="bg-white rounded-lg shadow-xl p-8"
             >
-              <h2 className="text-2xl font-semibold mb-6">Schreiben Sie uns</h2>
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0055FF] focus:ring-[#0055FF] p-2 border"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                    E-Mail
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0055FF] focus:ring-[#0055FF] p-2 border"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                    Nachricht
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows={4}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0055FF] focus:ring-[#0055FF] p-2 border"
-                  ></textarea>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="w-full btn-primary"
-                  >
-                    Nachricht senden
-                  </button>
-                </div>
-              </form>
+              {!submitted ? (
+                <>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Newsletter Anmeldung</h2>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        E-Mail-Adresse
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+                        placeholder="ihre.email@beispiel.de"
+                      />
+                    </div>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="w-full bg-gradient-to-r from-[#4287f5] to-[#9d7cf5] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition duration-200"
+                    >
+                      Anmelden
+                    </motion.button>
+                  </form>
+                </>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-8"
+                >
+                  <div className="text-5xl mb-4">✓</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Vielen Dank!</h3>
+                  <p className="text-gray-600">
+                    Ihre E-Mail-Adresse wurde erfolgreich registriert.
+                  </p>
+                </motion.div>
+              )}
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-12 text-center"
             >
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center space-x-4">
-                  <EnvelopeIcon className="h-6 w-6 text-[#0055FF]" />
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900">E-Mail</h3>
-                    <p className="text-gray-600">kontakt@coreit-advisory.de</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center space-x-4">
-                  <PhoneIcon className="h-6 w-6 text-[#0055FF]" />
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900">Telefon</h3>
-                    <p className="text-gray-600">+49 (0) 123 456789</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <div className="flex items-center space-x-4">
-                  <MapPinIcon className="h-6 w-6 text-[#0055FF]" />
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900">Adresse</h3>
-                    <p className="text-gray-600">
-                      Musterstraße 123<br />
-                      12345 Musterstadt<br />
-                      Deutschland
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#0055FF] via-[#6B46C1] to-[#1A1A1A] text-white rounded-lg p-6 shadow-lg">
-                <h3 className="text-lg font-medium mb-2">Bürozeiten</h3>
-                <p>Montag - Freitag<br />9:00 - 17:00 Uhr</p>
-              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Direkter Kontakt</h3>
+              <p className="text-gray-600 mb-2">
+                CoreIT Advisory GmbH
+              </p>
+              <a
+                href="mailto:info@coreit-advisory.de"
+                className="text-blue-600 hover:text-blue-800 transition duration-200"
+              >
+                info@coreit-advisory.de
+              </a>
             </motion.div>
           </div>
         </div>
